@@ -13,11 +13,11 @@ const Hero = () => {
   const Carousel = () => {
     const images = useMemo(
       () => [
-        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.39 PM.jpeg',
-        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.38 PM (1).jpeg',
-        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.38 PM (2).jpeg',
-        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.39 PM (1).jpeg',
-        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.38 PM.jpeg',
+        '/images/nible/5.jpeg',
+        '/images/nible/1.jpeg',
+        '/images/nible/2.jpeg',
+        '/images/nible/4.jpeg',
+        '/images/nible/3.jpeg',
       ],
       []
     );
