@@ -11,28 +11,31 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <nav className="fixed top-0 w-full bg-blue/50 backdrop-blur-md border-b border-border z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand */}
-          <a href="#" aria-label="Nible home" className="flex items-center gap-2">
-            <img
-              src="/images/nible/briefly.png"
-              alt=""
-              className="h-8 w-8 rounded-md object-contain"
-              loading="lazy"
-            />
-            <span className="text-white font-poppins font-semibold text-xl tracking-tight">Nible</span>
-          </a>
+          {/* Brand + Tagline */}
+          <div className="flex items-center gap-4">
+            <a href="#" aria-label="Nible home" className="flex items-center gap-2">
+              <img
+                src="/images/nible/briefly.png"
+                alt=""
+                className="h-12 w-12 rounded-md object-contain"
+                loading="lazy"
+              />
+              <span className="text-white font-poppins font-semibold text-2xl tracking-tight">Nible</span>
+            </a>
+            <span className="hidden md:inline text-white/90 text-base font-inter">Quick reads for busy minds.</span>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-20 flex items-baseline space-x-8 text-lg">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-inter font-medium transition-colors"
+                  className="text-muted-foreground hover:text-foreground px-3 py-2 text-base font-inter font-medium transition-colors"
                 >
                   {item.name}
                 </a>

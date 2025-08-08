@@ -7,7 +7,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-poppins font-bold text-primary mb-4">Nible</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/images/nible/briefly.png" alt="Nible logo" className="h-8 w-8 rounded-md object-contain" loading="lazy" />
+              <h3 className="text-2xl font-poppins font-bold text-primary">Nible</h3>
+            </div>
             <p className="text-muted-foreground font-inter mb-6 max-w-md">
               AI-summarized news in a flash. Quick reads for busy minds.
             </p>

@@ -41,7 +41,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="relative py-24 bg-gradient-to-b from-sky-100/70 via-white/70 to-transparent">
+    <section id="features" className="relative py-24 bg-gradient-to-b from-sky-100/80 via-sky-50/80 to-transparent">
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-16 -left-8 h-48 w-48 rounded-full bg-sky-300/30 blur-2xl" />
@@ -63,7 +63,7 @@ const Features = () => {
           {features.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="group relative rounded-2xl border border-sky-200/60 bg-white/70 backdrop-blur-sm p-6 transition-all hover:-translate-y-1 hover:shadow-xl"
+              className="group relative rounded-2xl border border-sky-200/60 bg-white/70 backdrop-blur-sm p-6 transition-all hover:-translate-y-1 hover:shadow-xl max-w-sm mx-auto w-full"
             >
               {/* glow ring */}
               <div className="absolute inset-0 rounded-2xl ring-1 ring-transparent group-hover:ring-sky-300/30 transition" />
