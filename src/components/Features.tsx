@@ -71,7 +71,7 @@ const Features = () => {
         {/* Stats Section */}
         <div className="mt-20 grid sm:grid-cols-3 gap-8 text-center">
           <div className="p-6">
-            <div className="text-4xl font-poppins font-bold text-primary mb-2">2-3min</div>
+            <div className="text-4xl font-poppins font-bold text-primary mb-2">8 sec</div>
             <p className="text-muted-foreground font-inter">Average reading time</p>
           </div>
           <div className="p-6">
@@ -79,7 +79,7 @@ const Features = () => {
             <p className="text-muted-foreground font-inter">Real-time updates</p>
           </div>
           <div className="p-6">
-            <div className="text-4xl font-poppins font-bold text-primary mb-2">100+</div>
+            <div className="text-4xl font-poppins font-bold text-primary mb-2">10+</div>
             <p className="text-muted-foreground font-inter">Trusted sources</p>
           </div>
         </div>

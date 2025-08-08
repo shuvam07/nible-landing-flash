@@ -2,8 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
-import Screenshots from "@/components/Screenshots";
-import Testimonials from "@/components/Testimonials";
+import AppScreenshots from "@/components/AppScreenshots";
+
 import IOSInstall from "@/components/IOSInstall";
 import Newsletter from "@/components/Newsletter";
 import FAQ from "@/components/FAQ";
@@ -16,8 +16,8 @@ const Index = () => {
       <Hero />
       <Features />
       <HowItWorks />
-      <Screenshots />
-      <Testimonials />
+      <AppScreenshots />
+      
       <IOSInstall />
       <Newsletter />
       <FAQ />

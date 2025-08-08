@@ -90,7 +90,7 @@ const Hero = () => {
               {/* Android Waitlist */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
                 <h3 className="text-white font-inter font-semibold text-lg mb-3">
-                  Join Android Waitlist
+                  Join Waitlist
                 </h3>
                 <form onSubmit={handleAndroidWaitlist} className="flex gap-3">
                   <Input

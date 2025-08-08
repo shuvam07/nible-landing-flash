@@ -46,12 +46,12 @@ const Newsletter = () => {
             </div>
             
             <h2 className="text-4xl sm:text-5xl font-poppins font-bold text-foreground mb-6">
-              Join the Android
+              Join the
               <span className="text-primary block">Waitlist</span>
             </h2>
             
             <p className="text-xl text-muted-foreground font-inter mb-8">
-              Be the first to know when Nible launches on Android. Plus, get exclusive updates about new features and improvements.
+              Be the first to know when Nible launches. Plus, get exclusive updates about new features and improvements.
             </p>
           </div>
 
