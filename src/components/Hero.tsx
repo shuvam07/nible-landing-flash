@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Smartphone, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
 const Hero = () => {
   const [email, setEmail] = useState("");
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleAndroidWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -17,20 +17,18 @@ const Hero = () => {
       // await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
       toast({
         title: "Thanks for joining!",
-        description: "We'll notify you when Nible launches on Android.",
+        description: "We'll notify you when Nible launches on Android."
       });
       setEmail("");
     } catch (error) {
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-hero-from via-hero-via to-hero-to" />
       
@@ -65,25 +63,12 @@ const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                <Button 
-                  size="lg"
-                  className="bg-primary hover:bg-primary-hover text-primary-foreground font-inter font-semibold text-lg px-8 py-4"
-                  asChild
-                >
-                  <a href="#ios-install" className="flex items-center">
-                    <Smartphone className="mr-2 h-5 w-5" />
-                    Download for iOS
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                <Button size="lg" className="bg-primary hover:bg-primary-hover text-primary-foreground font-inter font-semibold text-lg px-8 py-4" asChild>
+                  
                 </Button>
                 
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10 font-inter font-semibold text-lg px-8 py-4"
-                  asChild
-                >
-                  <a href="#screenshots">View Screenshots</a>
+                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 font-inter font-semibold text-lg px-8 py-4" asChild>
+                  
                 </Button>
               </div>
 
@@ -93,18 +78,8 @@ const Hero = () => {
                   Join Waitlist
                 </h3>
                 <form onSubmit={handleAndroidWaitlist} className="flex gap-3">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white"
-                    required
-                  />
-                  <Button 
-                    type="submit"
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground px-6"
-                  >
+                  <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white" required />
+                  <Button type="submit" className="bg-accent hover:bg-accent/90 text-accent-foreground px-6">
                     Join
                   </Button>
                 </form>
@@ -165,8 +140,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
