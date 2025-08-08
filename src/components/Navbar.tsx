@@ -7,22 +7,23 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Features", href: "#features" },
-    { name: "How it works", href: "#how-it-works" },
-    { name: "Screenshots", href: "#screenshots" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" }
+    { name: "Contact", href: "mailto:hello@nible.news" }
   ];
 
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <a href="/" className="text-2xl font-poppins font-bold text-primary">
-              Nible
-            </a>
-          </div>
+          {/* Brand */}
+          <a href="#" aria-label="Nible home" className="flex items-center gap-2">
+            <img
+              src="/images/nible/briefly.png"
+              alt=""
+              className="h-8 w-8 rounded-md object-contain"
+              loading="lazy"
+            />
+            <span className="text-white font-poppins font-semibold text-xl tracking-tight">Nible</span>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">

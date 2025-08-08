@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Smartphone, Zap } from "lucide-react";
@@ -8,6 +8,59 @@ const Hero = () => {
   const {
     toast
   } = useToast();
+  
+  // Local carousel component for screenshots
+  const Carousel = () => {
+    const images = useMemo(
+      () => [
+        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.39 PM.jpeg',
+        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.38 PM (1).jpeg',
+        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.38 PM (2).jpeg',
+        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.39 PM (1).jpeg',
+        '/images/nible/WhatsApp Image 2025-08-08 at 1.26.38 PM.jpeg',
+      ],
+      []
+    );
+    const [index, setIndex] = useState(0);
+    
+    useEffect(() => {
+      const id = setInterval(() => {
+        setIndex((prev) => (prev + 1) % images.length);
+      }, 1200);
+      return () => clearInterval(id);
+    }, [images.length]);
+    
+    return (
+      <div className="relative w-full overflow-hidden rounded-2xl bg-white/10">
+        <div
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {images.map((src) => (
+            <div key={src} className="min-w-full">
+              <img
+                src={src}
+                alt="Nible screenshot"
+                className="w-full h-auto block"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+        {/* Dots */}
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={
+                "h-2 w-2 rounded-full " + (i === index ? "bg-white" : "bg-white/40")
+              }
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
   const handleAndroidWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -63,13 +116,10 @@ const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                <Button size="lg" className="bg-primary hover:bg-primary-hover text-primary-foreground font-inter font-semibold text-lg px-8 py-4" asChild>
-                  
-                </Button>
-                
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 font-inter font-semibold text-lg px-8 py-4" asChild>
-                  
-                </Button>
+                <a href="https://apps.apple.com/app/nible" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-6 py-4 hover:bg-zinc-900 font-inter font-semibold text-lg">
+                  <Smartphone className="w-5 h-5" />
+                  Download on the App Store
+                </a>
               </div>
 
               {/* Android Waitlist */}
@@ -86,55 +136,10 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Device Mockup */}
-            <div className="relative flex justify-center lg:justify-end">
-              <div className="relative">
-                {/* Phone Frame */}
-                <div className="relative w-80 h-[640px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl">
-                  <div className="w-full h-full bg-hero-from rounded-[2.5rem] overflow-hidden relative">
-                    {/* Status Bar */}
-                    <div className="flex justify-between items-center px-6 py-3 text-white text-sm">
-                      <span>1:24</span>
-                      <div className="flex items-center space-x-1">
-                        <div className="flex space-x-1">
-                          <div className="w-1 h-1 bg-white rounded-full"></div>
-                          <div className="w-1 h-1 bg-white rounded-full"></div>
-                          <div className="w-1 h-1 bg-white rounded-full"></div>
-                        </div>
-                        <span className="ml-2">80%</span>
-                      </div>
-                    </div>
-                    
-                    {/* App Content Preview */}
-                    <div className="px-4">
-                      <div className="text-center mb-6">
-                        <div className="w-16 h-16 bg-primary rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                          <span className="text-white font-bold text-xl">N</span>
-                        </div>
-                        <h2 className="text-white text-2xl font-poppins font-bold">Nible</h2>
-                        <p className="text-white/60 text-sm mt-2">Quick reads for busy minds...</p>
-                      </div>
-                      
-                      {/* News Card Preview */}
-                      <div className="bg-white/10 rounded-xl p-4 mb-4">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-primary text-sm font-semibold">Tech</span>
-                          <span className="text-white/60 text-xs">2h ago</span>
-                        </div>
-                        <h3 className="text-white text-sm font-semibold mb-2">
-                          AI breakthrough changes everything
-                        </h3>
-                        <p className="text-white/80 text-xs leading-relaxed">
-                          Latest developments in artificial intelligence are reshaping how we interact with technology...
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full animate-bounce delay-300" />
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/20 rounded-full animate-bounce delay-700" />
+            {/* See Nible in action: auto carousel (smaller width) */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-[240px] sm:w-[280px] md:w-[320px]">
+                <Carousel />
               </div>
             </div>
           </div>
