@@ -70,7 +70,7 @@ const Hero = () => {
       // await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
       toast({
         title: "Thanks for joining!",
-        description: "We'll notify you when Nible launches on Android."
+        description: "We'll notify you when Nible launches on iOS / Android."
       });
       setEmail("");
     } catch (error) {
