@@ -72,7 +72,7 @@ const Hero = () => {
       // await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
       toast({
         title: "Thanks for joining!",
-        description: "We'll notify you when Nible launches on iOS / Android."
+        description: "We'll notify you when Nible launches on Android."
       });
       setEmail("");
     } catch (error) {
@@ -134,7 +134,10 @@ const Hero = () => {
               {/* Android Waitlist */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
                 <h3 className="text-white font-inter font-semibold text-lg mb-3">
-                  Join Waitlist
+                  Join Waitlist{' '}
+                  <span className="font-normal text-sm text-white/80">
+                    for Android
+                  </span>
                 </h3>
                 <form onSubmit={handleAndroidWaitlist} className="flex gap-3">
                   <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white" required />
