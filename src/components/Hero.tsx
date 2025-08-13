@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Apple, ArrowRight, Smartphone, Zap } from "lucide-react";
+import { ArrowRight, Smartphone, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import AppStoreBadge from "@/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
+
 const Hero = () => {
   const [email, setEmail] = useState("");
   const {
@@ -120,10 +122,12 @@ const Hero = () => {
                   href="https://apps.apple.com/in/app/nible-news/id6748324981"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-6 py-4 hover:bg-zinc-900 font-inter font-semibold text-lg"
                 >
-                  <Apple className="w-5 h-5" />
-                  Download on the App Store
+                  <img
+                    src={AppStoreBadge}
+                    alt="Download on the App Store"
+                    className="h-12"
+                  />
                 </a>
               </div>
 

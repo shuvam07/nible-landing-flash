@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Apple, Download, Smartphone } from "lucide-react";
+import { Apple } from "lucide-react";
+import AppStoreBadge from "@/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
+
 const IOSInstall = () => {
   return (
     <section id="ios-install" className="py-16">
@@ -11,13 +12,15 @@ const IOSInstall = () => {
           </div>
           <h3 className="text-2xl sm:text-3xl font-poppins font-semibold">Get the Nible app</h3>
           <a
-            href="https://apps.apple.com/app/nible"
+            href="https://apps.apple.com/in/app/nible-news/id6748324981"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-5 py-3 hover:bg-zinc-900"
           >
-            <Smartphone className="h-5 w-5" />
-            Download on the App Store
+            <img
+              src={AppStoreBadge}
+              alt="Download on the App Store"
+              className="h-12"
+            />
           </a>
         </div>
       </div>
