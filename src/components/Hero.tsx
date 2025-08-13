@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Smartphone, Zap } from "lucide-react";
+import { Apple, ArrowRight, Smartphone, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 const Hero = () => {
   const [email, setEmail] = useState("");
@@ -116,8 +116,13 @@ const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                <a href="https://apps.apple.com/app/nible" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-6 py-4 hover:bg-zinc-900 font-inter font-semibold text-lg">
-                  <Smartphone className="w-5 h-5" />
+                <a
+                  href="https://apps.apple.com/in/app/nible-news/id6748324981"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-6 py-4 hover:bg-zinc-900 font-inter font-semibold text-lg"
+                >
+                  <Apple className="w-5 h-5" />
                   Download on the App Store
                 </a>
               </div>
