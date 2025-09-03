@@ -24,7 +24,7 @@ const Footer = () => {
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="mailto:hello@nible.app" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto:hello@nible.news" className="text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
