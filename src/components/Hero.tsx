@@ -63,18 +63,34 @@ const Hero = () => {
       </div>
     );
   };
-  const handleAndroidWaitlist = async (e: React.FormEvent) => {
+  const handleNewsletterSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
-    // Placeholder for API call
     try {
-      // await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
-      toast({
-        title: "Thanks for joining!",
-        description: "We'll notify you when Nible launches on Android."
+      const response = await fetch('https://api.nible.news/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          email: email
+        })
       });
-      setEmail("");
+      
+      if (response.ok) {
+        toast({
+          title: "Welcome to Nible Newsletter!",
+          description: "You'll receive your daily news brief every morning."
+        });
+        setEmail("");
+      } else {
+        toast({
+          title: "Subscription failed",
+          description: "Please check your email and try again.",
+          variant: "destructive"
+        });
+      }
     } catch (error) {
       toast({
         title: "Something went wrong",
@@ -117,7 +133,7 @@ const Hero = () => {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <a
                   href="https://apps.apple.com/in/app/nible-news/id6748324981"
                   target="_blank"
@@ -131,18 +147,32 @@ const Hero = () => {
                 </a>
               </div>
 
-              {/* Android Waitlist */}
+              {/* Coming Soon Badge */}
+              <div className="mb-8">
+                <span className="inline-block bg-white/20 backdrop-blur-sm text-white/90 font-inter text-sm px-4 py-2 rounded-full">
+                  🤖 Android coming soon
+                </span>
+              </div>
+
+              {/* Newsletter Subscription */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
-                <h3 className="text-white font-inter font-semibold text-lg mb-3">
-                  Join Waitlist{' '}
-                  <span className="font-normal text-sm text-white/80">
-                    for Android
-                  </span>
+                <h3 className="text-white font-inter font-semibold text-lg mb-2">
+                  📬 Subscribe to Daily Newsletter
                 </h3>
-                <form onSubmit={handleAndroidWaitlist} className="flex gap-3">
-                  <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white" required />
+                <p className="text-white/70 font-inter text-sm mb-4">
+                  Get short news briefs delivered to your inbox every morning
+                </p>
+                <form onSubmit={handleNewsletterSubscribe} className="flex gap-3">
+                  <Input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    value={email} 
+                    onChange={e => setEmail(e.target.value)} 
+                    className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white" 
+                    required 
+                  />
                   <Button type="submit" className="bg-accent hover:bg-accent/90 text-accent-foreground px-6">
-                    Join
+                    Subscribe
                   </Button>
                 </form>
               </div>
