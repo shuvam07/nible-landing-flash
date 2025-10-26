@@ -18,10 +18,22 @@ const Footer = () => {
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://www.linkedin.com/company/nible-news/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                title="Follow us on LinkedIn"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://www.instagram.com/nible.news/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                title="Follow on Instagram for daily news updates"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
               <a href="mailto:hello@nible.news" className="text-muted-foreground hover:text-primary transition-colors">

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Smartphone, Zap, Instagram } from "lucide-react";
+import { ArrowRight, Smartphone, Zap, Instagram, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import AppStoreBadge from "@/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
 
@@ -156,20 +156,9 @@ const Hero = () => {
 
               {/* Newsletter Subscription */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-white font-inter font-semibold text-lg">
-                    📬 Subscribe to Daily Newsletter
-                  </h3>
-                  <a 
-                    href="https://www.instagram.com/nible.news/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white transition-colors"
-                    title="Follow on Instagram for daily news updates"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                </div>
+                <h3 className="text-white font-inter font-semibold text-lg mb-2">
+                  📬 Subscribe to Daily Newsletter
+                </h3>
                 <p className="text-white/70 font-inter text-sm mb-4">
                   Get short news briefs delivered to your inbox every morning
                 </p>
@@ -186,6 +175,33 @@ const Hero = () => {
                     Subscribe
                   </Button>
                 </form>
+              </div>
+
+              {/* Social Media */}
+              <div className="mt-6 text-center lg:text-left">
+                <p className="text-white/70 font-inter text-sm mb-3">
+                  Follow us for daily news updates
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a 
+                    href="https://www.instagram.com/nible.news/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105"
+                  >
+                    <Instagram className="w-4 h-4" />
+                    Follow on Instagram
+                  </a>
+                  <a 
+                    href="https://www.linkedin.com/company/nible-news/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    Follow on LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
 
