@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Smartphone, Zap, Instagram, Linkedin } from "lucide-react";
+import { ArrowRight, Smartphone, Zap, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import AppStoreBadge from "@/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
 
@@ -182,26 +182,15 @@ const Hero = () => {
                 <p className="text-white/70 font-inter text-sm mb-3">
                   Follow us for daily news updates
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a 
-                    href="https://www.instagram.com/nible.news/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105"
-                  >
-                    <Instagram className="w-4 h-4" />
-                    Follow on Instagram
-                  </a>
-                  <a 
-                    href="https://www.linkedin.com/company/nible-news/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    Follow on LinkedIn
-                  </a>
-                </div>
+                <a 
+                  href="https://www.instagram.com/nible.news/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105"
+                >
+                  <Instagram className="w-4 h-4" />
+                  Follow on Instagram
+                </a>
               </div>
             </div>
 
