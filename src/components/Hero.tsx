@@ -145,11 +145,7 @@ const Hero = () => {
                     className="h-12"
                   />
                 </a>
-              </div>
-
-              {/* Coming Soon Badge */}
-              <div className="mb-8">
-                <span className="inline-block bg-white/20 backdrop-blur-sm text-white/90 font-inter text-sm px-4 py-2 rounded-full">
+                <span className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 font-inter text-sm px-4 py-2 rounded-full">
                   🤖 Android coming soon
                 </span>
               </div>
