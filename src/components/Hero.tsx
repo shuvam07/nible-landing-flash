@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Smartphone, Zap } from "lucide-react";
+import { ArrowRight, Smartphone, Zap, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import AppStoreBadge from "@/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
 
@@ -156,9 +156,20 @@ const Hero = () => {
 
               {/* Newsletter Subscription */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
-                <h3 className="text-white font-inter font-semibold text-lg mb-2">
-                  📬 Subscribe to Daily Newsletter
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-white font-inter font-semibold text-lg">
+                    📬 Subscribe to Daily Newsletter
+                  </h3>
+                  <a 
+                    href="https://www.instagram.com/nible.news/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white/70 hover:text-white transition-colors"
+                    title="Follow on Instagram for daily news updates"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                </div>
                 <p className="text-white/70 font-inter text-sm mb-4">
                   Get short news briefs delivered to your inbox every morning
                 </p>
