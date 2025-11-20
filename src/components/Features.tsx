@@ -41,11 +41,11 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="relative py-24 bg-gradient-to-b from-sky-100/80 via-sky-50/80 to-transparent">
+    <section id="features" className="relative py-24 bg-gradient-to-b from-orange-100/80 via-orange-50/80 to-transparent">
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-16 -left-8 h-48 w-48 rounded-full bg-sky-300/30 blur-2xl" />
-        <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-blue-300/25 blur-2xl" />
+        <div className="absolute -top-16 -left-8 h-48 w-48 rounded-full bg-orange-300/30 blur-2xl" />
+        <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-orange-300/25 blur-2xl" />
       </div>
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,13 +63,13 @@ const Features = () => {
           {features.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="group relative rounded-2xl border border-sky-200/60 bg-white/70 backdrop-blur-sm p-6 transition-all hover:-translate-y-1 hover:shadow-xl max-w-sm mx-auto w-full"
+              className="group relative rounded-2xl border border-orange-200/60 bg-white/70 backdrop-blur-sm p-6 transition-all hover:-translate-y-1 hover:shadow-xl max-w-sm mx-auto w-full"
             >
               {/* glow ring */}
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-transparent group-hover:ring-sky-300/30 transition" />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-transparent group-hover:ring-orange-300/30 transition" />
 
               <div className="mb-4 flex items-center gap-3">
-                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-sky-400/10 to-white text-sky-700 flex items-center justify-center ring-1 ring-sky-300/40">
+                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-orange-400/10 to-white text-orange-700 flex items-center justify-center ring-1 ring-orange-300/40">
                   <Icon className="h-5 w-5" />
                 </div>
                 <h3 className="font-poppins font-semibold text-base text-zinc-900">{title}</h3>
@@ -79,9 +79,9 @@ const Features = () => {
                 {description}
               </p>
 
-              <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-sky-200/60 to-transparent" />
+              <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-orange-200/60 to-transparent" />
               <div className="mt-3 flex items-center gap-2 text-xs text-zinc-600">
-                <span className="inline-block h-2 w-2 rounded-full bg-sky-400/80" />
+                <span className="inline-block h-2 w-2 rounded-full bg-orange-400/80" />
                 Optimized for daily use
               </div>
             </div>

@@ -15,11 +15,11 @@ const Hero = () => {
   const Carousel = () => {
     const images = useMemo(
       () => [
-        '/images/nible/5.jpeg',
-        '/images/nible/1.jpeg',
-        '/images/nible/2.jpeg',
-        '/images/nible/4.jpeg',
-        '/images/nible/3.jpeg',
+        '/images/nible/5.png',
+        '/images/nible/1.png',
+        '/images/nible/2.png',
+        '/images/nible/4.png',
+        '/images/nible/3.png',
       ],
       []
     );
@@ -55,7 +55,7 @@ const Hero = () => {
             <span
               key={i}
               className={
-                "h-2 w-2 rounded-full " + (i === index ? "bg-white" : "bg-white/40")
+                "h-2 w-2 rounded-full " + (i === index ? "bg-primary" : "bg-primary/40")
               }
             />
           ))}
@@ -116,19 +116,19 @@ const Hero = () => {
             <div className="text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start mb-6">
                 <Zap className="w-5 h-5 text-accent mr-2" />
-                <span className="text-accent font-inter font-medium text-base">Latest‑first • AI summarized</span>
+                <span className="text-accent font-inter font-medium text-base">Latest‑first • Ad-free</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-white mb-6 leading-tight">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-foreground mb-6 leading-tight">
                 Fresh news.
                 <span className="text-primary block">Fast reads.</span>
               </h1>
               
-              <p className="text-xl sm:text-2xl text-white/80 font-inter mb-8 max-w-2xl mx-auto lg:mx-0">
-                Swipe through concise, AI‑crafted briefs—updated all day.
+              <p className="text-xl sm:text-2xl text-foreground/80 font-inter mb-8 max-w-2xl mx-auto lg:mx-0">
+                Swipe through concise, Ad-free briefs—updated all day.
               </p>
 
-              <p className="text-lg text-white/70 font-inter mb-12 max-w-xl mx-auto lg:mx-0">
+              <p className="text-lg text-foreground/70 font-inter mb-12 max-w-xl mx-auto lg:mx-0">
                 No fluff. Just what matters.
               </p>
 
@@ -145,17 +145,17 @@ const Hero = () => {
                     className="h-12"
                   />
                 </a>
-                <span className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 font-inter text-sm px-4 py-2 rounded-full">
+                <span className="inline-flex items-center bg-primary/10 backdrop-blur-sm text-foreground font-inter text-sm px-4 py-2 rounded-full border border-primary/20">
                   🤖 Android coming soon
                 </span>
               </div>
 
               {/* Newsletter Subscription */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0">
-                <h3 className="text-white font-inter font-semibold text-lg mb-2">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0 border border-primary/20 shadow-lg">
+                <h3 className="text-foreground font-inter font-semibold text-lg mb-2">
                   📬 Subscribe to Daily Newsletter
                 </h3>
-                <p className="text-white/70 font-inter text-sm mb-4">
+                <p className="text-foreground/70 font-inter text-sm mb-4">
                   Get short news briefs delivered to your inbox every morning
                 </p>
                 <form onSubmit={handleNewsletterSubscribe} className="flex gap-3">
@@ -164,10 +164,10 @@ const Hero = () => {
                     placeholder="Enter your email" 
                     value={email} 
                     onChange={e => setEmail(e.target.value)} 
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white" 
+                    className="bg-white border-border text-foreground placeholder:text-muted-foreground focus:border-primary" 
                     required 
                   />
-                  <Button type="submit" className="bg-accent hover:bg-accent/90 text-accent-foreground px-6">
+                  <Button type="submit" className="bg-primary hover:bg-primary-hover text-primary-foreground px-6">
                     Subscribe
                   </Button>
                 </form>
@@ -175,14 +175,14 @@ const Hero = () => {
 
               {/* Social Media */}
               <div className="mt-6 text-center lg:text-left">
-                <p className="text-white/70 font-inter text-sm mb-3">
+                <p className="text-foreground/70 font-inter text-sm mb-3">
                   Follow us for daily news updates
                 </p>
                 <a 
                   href="https://www.instagram.com/nible.news/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105"
+                  className="inline-flex items-center gap-2 bg-white text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full font-inter text-sm transition-all duration-200 hover:scale-105 border border-primary/30 shadow-sm"
                 >
                   <Instagram className="w-4 h-4" />
                   Follow on Instagram

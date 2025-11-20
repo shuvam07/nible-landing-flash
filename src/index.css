@@ -8,41 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Nible Brand Colors */
-    --primary: 211 100% 50%; /* #007AFF */
+    /* Nible Brand Colors - Softer Orange */
+    --primary: 24 85% 55%; /* Softer orange, less intense than #FF6600 */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 211 100% 45%;
+    --primary-hover: 24 85% 50%;
     
-    --accent: 4 86% 70%; /* #FF6B6B */
+    --accent: 24 75% 65%; /* Lighter, softer orange accent */
     --accent-foreground: 0 0% 100%;
     
-    /* Neutral Colors */
+    /* Neutral Colors - White and Orange Theme */
     --background: 0 0% 100%;
-    --foreground: 222 84% 5%;
+    --foreground: 222 47% 11%; /* Dark text for contrast */
     
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 5%;
+    --card-foreground: 222 47% 11%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 5%;
+    --popover-foreground: 222 47% 11%;
     
-    --secondary: 210 40% 96%;
+    --secondary: 24 30% 96%; /* Very light orange tint */
     --secondary-foreground: 222 47% 11%;
     
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 24 20% 95%; /* Light orange-tinted grey */
+    --muted-foreground: 222 30% 40%; /* Darker grey for better contrast */
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 211 100% 50%;
+    --border: 24 25% 88%; /* Light orange-tinted border */
+    --input: 24 25% 88%;
+    --ring: 24 85% 55%;
     
-    /* Dark gradient colors for hero */
-    --hero-from: 245 45% 15%; /* #1a1a2e */
-    --hero-via: 225 45% 20%; /* #16213e */
-    --hero-to: 215 75% 22%; /* #0f3460 */
+    /* Light gradient colors for hero - white to soft orange */
+    --hero-from: 24 40% 98%; /* Very light orange-tinted white */
+    --hero-via: 24 50% 95%; /* Light orange-tinted */
+    --hero-to: 24 60% 92%; /* Soft orange-tinted */
     
     --radius: 0.75rem;
     
@@ -51,33 +51,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 245 45% 15%;
+    --background: 24 30% 10%;
     --foreground: 0 0% 98%;
     
-    --card: 245 45% 15%;
+    --card: 24 30% 12%;
     --card-foreground: 0 0% 98%;
     
-    --popover: 245 45% 15%;
+    --popover: 24 30% 12%;
     --popover-foreground: 0 0% 98%;
     
-    --primary: 211 100% 50%;
+    --primary: 24 85% 55%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 225 45% 20%;
+    --secondary: 24 35% 18%;
     --secondary-foreground: 0 0% 98%;
     
-    --muted: 225 45% 20%;
+    --muted: 24 35% 18%;
     --muted-foreground: 215 20% 65%;
     
-    --accent: 4 86% 70%;
+    --accent: 24 75% 65%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 225 45% 20%;
-    --input: 225 45% 20%;
-    --ring: 211 100% 50%;
+    --border: 24 35% 20%;
+    --input: 24 35% 20%;
+    --ring: 24 85% 55%;
   }
 }
 

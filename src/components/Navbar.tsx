@@ -11,7 +11,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-blue/50 backdrop-blur-md border-b border-border z-50">
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-border z-50 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand + Tagline */}
@@ -23,9 +23,9 @@ const Navbar = () => {
                 className="h-12 w-12 rounded-md object-contain"
                 loading="lazy"
               />
-              <span className="text-white font-poppins font-semibold text-2xl tracking-tight">Nible</span>
+              <span className="text-primary font-poppins font-semibold text-2xl tracking-tight">Nible</span>
             </a>
-            <span className="hidden md:inline text-white/90 text-base font-inter">Quick reads for busy minds.</span>
+            <span className="hidden md:inline text-foreground/70 text-base font-inter">Quick reads for busy minds.</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -35,7 +35,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground px-3 py-2 text-base font-inter font-medium transition-colors"
+                  className="text-foreground hover:text-primary px-3 py-2 text-base font-inter font-medium transition-colors"
                 >
                   {item.name}
                 </a>
@@ -57,7 +57,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-muted-foreground hover:text-foreground"
+              className="text-foreground hover:text-primary"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -72,7 +72,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground block px-3 py-2 text-base font-inter font-medium"
+                  className="text-foreground hover:text-primary block px-3 py-2 text-base font-inter font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
