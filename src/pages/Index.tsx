@@ -1,8 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ValueProposition from "@/components/ValueProposition";
 import Features from "@/components/Features";
-// Removed HowItWorks section from page
-
 import IOSInstall from "@/components/IOSInstall";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -12,8 +11,8 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
+      <ValueProposition />
       <Features />
-      {/* HowItWorks removed */}
       <IOSInstall />
       <FAQ />
       <Footer />
