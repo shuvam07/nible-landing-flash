@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight, Smartphone, Zap, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import AppStoreBadge from "@/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg";
+import PlayStoreBadge from "@/assets/Download-on-the-android-store.svg";
 
 const Hero = () => {
   const [email, setEmail] = useState("");
@@ -145,9 +146,17 @@ const Hero = () => {
                     className="h-12"
                   />
                 </a>
-                <span className="inline-flex items-center bg-primary/10 backdrop-blur-sm text-foreground font-inter text-sm px-4 py-2 rounded-full border border-primary/20">
-                  🤖 Android coming soon
-                </span>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.nible.news&pcampaignid=web_share"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={PlayStoreBadge}
+                    alt="Get it on Google Play"
+                    className="h-12"
+                  />
+                </a>
               </div>
 
               {/* Newsletter Subscription */}
