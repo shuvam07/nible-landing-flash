@@ -4,7 +4,7 @@ import PlayStoreBadge from "@/assets/Download-on-the-android-store.svg";
 
 const IOSInstall = () => {
   return (
-    <section id="ios-install" className="py-16">
+    <section id="install" className="py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 text-center">
           {/* <div className="flex items-center gap-2 text-foreground/80">

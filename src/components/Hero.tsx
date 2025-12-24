@@ -160,7 +160,10 @@ const Hero = () => {
               </div>
 
               {/* Newsletter Subscription */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0 border border-primary/20 shadow-lg">
+              <div
+                id="subscribe"
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto lg:mx-0 border border-primary/20 shadow-lg"
+              >
                 <h3 className="text-foreground font-inter font-semibold text-lg mb-2">
                   📬 Subscribe to Daily Newsletter
                 </h3>

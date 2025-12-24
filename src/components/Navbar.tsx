@@ -49,7 +49,7 @@ const Navbar = () => {
               asChild
               className="bg-primary hover:bg-primary-hover text-primary-foreground font-inter font-medium"
             >
-              <a href="#ios-install">Get the App</a>
+              <a href="#install">Get the App</a>
             </Button>
           </div>
 
@@ -83,7 +83,7 @@ const Navbar = () => {
                   asChild
                   className="w-full bg-primary hover:bg-primary-hover text-primary-foreground font-inter font-medium"
                 >
-                  <a href="#ios-install">Get the App</a>
+                  <a href="#install">Get the App</a>
                 </Button>
               </div>
             </div>

@@ -170,7 +170,7 @@ const Screenshots = () => {
               asChild
               className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
-              <a href="#ios-install">Experience It Yourself</a>
+              <a href="#install">Experience It Yourself</a>
             </Button>
           </div>
         </div>
