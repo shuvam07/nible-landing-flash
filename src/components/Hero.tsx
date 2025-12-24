@@ -126,11 +126,11 @@ const Hero = () => {
               </h1>
               
               <p className="text-xl sm:text-2xl text-foreground/80 font-inter mb-8 max-w-2xl mx-auto lg:mx-0">
-                Swipe through concise, Ad-free briefs—updated all day.
+                News that fits your day.
               </p>
 
               <p className="text-lg text-foreground/70 font-inter mb-12 max-w-xl mx-auto lg:mx-0">
-                No fluff. Just what matters.
+                Swipe through concise, ad-free briefs and open only what matters.
               </p>
 
               {/* CTA Buttons */}
