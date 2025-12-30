@@ -1,42 +1,42 @@
-import { Clock, Brain, Layers, Wifi, Shield, Zap } from "lucide-react";
+import { Clock, BookOpen, Globe, Shield, Zap, Lock } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
+      icon: Shield,
+      title: "Ad-Free Experience",
+      description:
+        "No interruptions. Read your news without annoying ads or sponsored content blocking the way.",
+    },
+    {
+      icon: Lock,
+      title: "No Login Required",
+      description:
+        "Start reading immediately. We don't ask for your email, phone number, or any personal data.",
+    },
+    {
+      icon: BookOpen,
+      title: "60-word Summaries",
+      description:
+        "Get the full story in just 60 words. Concise briefs that deliver key facts without the fluff.",
+    },
+    {
+      icon: Globe,
+      title: "Dutch & Global News",
+      description:
+        "Stay informed on both Dutch local events and major global stories in one place.",
+    },
+    {
       icon: Clock,
       title: "Latest-First Feed",
       description:
-        "Trending first, then the rest — our two-pointer system keeps you ahead of the curve.",
-    },
-    {
-      icon: Brain,
-      title: "Smart AI Summaries",
-      description:
-        "Concise, clear briefs that deliver the key facts without the fluff.",
-    },
-    {
-      icon: Layers,
-      title: "Daily Digest Cards",
-      description:
-        "Beautiful, swipeable cards with highlights and insights for quick catch-ups.",
-    },
-    {
-      icon: Wifi,
-      title: "Offline-Friendly",
-      description:
-        "Read anywhere. Download stories for flights, commutes, or low-signal areas.",
-    },
-    {
-      icon: Shield,
-      title: "Privacy-First",
-      description:
-        "No tracking. No data selling. Your reading stays yours.",
+        "Trending and breaking news first — our system ensures you're always up to date.",
     },
     {
       icon: Zap,
       title: "Lightning Fast",
       description:
-        "Instant loads and smooth swipes for a frictionless reading flow.",
+        "Instant loads and smooth navigation for a frictionless reading experience.",
     },
   ];
 

@@ -13,17 +13,17 @@ const IOSInstall = () => {
           </div> */}
           <h3 className="text-2xl sm:text-3xl font-poppins font-semibold">Get the Nible app</h3>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <a
-              href="https://apps.apple.com/in/app/nible-news/id6748324981"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={AppStoreBadge}
-                alt="Download on the App Store"
-                className="h-12"
-              />
-            </a>
+          <a
+            href="https://apps.apple.com/in/app/nible-news/id6748324981"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={AppStoreBadge}
+              alt="Download on the App Store"
+              className="h-12"
+            />
+          </a>
             <a
               href="https://play.google.com/store/apps/details?id=com.nible.news&pcampaignid=web_share"
               target="_blank"

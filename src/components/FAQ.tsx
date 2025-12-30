@@ -4,17 +4,22 @@ const FAQ = () => {
     {
       question: "How is Nible different from other news apps?",
       answer:
-        "Nible uses AI to create concise summaries and prioritizes the latest news first with our unique two-pointer logic. Unlike other apps that show stories chronologically, we ensure trending and breaking news appears at the top of your feed.",
+        "Nible is built for speed and privacy. We provide 60-word summaries of Dutch local and global news, completely ad-free and with no login required. We don't track your data or sell your information.",
     },
     {
-      question: "How often is the news updated?",
+      question: "Why no login or account?",
       answer:
-        "Nible updates continuously throughout the day, 24/7. Our AI system monitors trusted sources in real-time and delivers new stories as they break, ensuring you're always up to date with the latest developments.",
+        "We believe you should be able to read the news without giving away your personal data. Nible works instantly after download—no sign-up, no email, and no password needed.",
     },
     {
-      question: "How does Nible protect my privacy?",
+      question: "Is it really ad-free?",
       answer:
-        "Privacy is our priority. We don't track your reading habits, sell your data, or share personal information with third parties. Your news consumption stays completely private, and you can use the app without creating an account.",
+        "Yes. Nible is 100% ad-free. You won't find any banners, popups, or sponsored content interrupting your reading experience.",
+    },
+    {
+      question: "What kind of news do you cover?",
+      answer:
+        "We cover a wide range of Dutch local news and major global stories, all condensed into clear 60-word briefs so you can stay informed in minutes.",
     },
   ];
   return (

@@ -12,7 +12,7 @@ const Footer = () => {
               <h3 className="text-2xl font-poppins font-bold text-primary">Nible</h3>
             </div>
             <p className="text-muted-foreground font-inter mb-6 max-w-md">
-              AI-summarized news in a flash. Quick reads for busy minds.
+              Ad-free Dutch & Global news summaries. 60 words, no login, no tracking.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -64,7 +64,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground font-inter text-sm">
-            © 2024 Nible. All rights reserved.
+            © 2025 Nible. All rights reserved.
           </p>
         </div>
       </div>

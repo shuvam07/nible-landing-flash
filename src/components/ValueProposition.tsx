@@ -2,21 +2,21 @@ import { CheckCircle2, XCircle } from "lucide-react";
 
 const ValueProposition = () => {
   const benefits = [
-    "Get the latest news first, not yesterday's stories",
-    "Crafted summaries save you hours every week",
     "No ads, no distractions - just pure news",
-    "Read offline anywhere, anytime",
-    "Privacy-first: your data stays yours",
-    "Beautiful, intuitive interface designed for speed"
+    "No login or sign-up required to start",
+    "Short 60-word summaries for every story",
+    "Dutch local and global news coverage",
+    "Privacy-first: no user data tracking",
+    "Latest-first: get news as it happens"
   ];
 
   const problems = [
-    "Too much noise, not enough signal",
-    "Ads interrupting your reading flow",
-    "Yesterday's news at the top of your feed",
+    "Ads and popups interrupting your reading",
+    "Forced account creation and data collection",
     "Long articles when you just want the facts",
-    "Can't read without internet connection",
-    "Your reading habits being tracked and sold"
+    "Hard to find relevant Dutch local news",
+    "Your reading habits being tracked and sold",
+    "Stale news at the top of your feed"
   ];
 
   return (

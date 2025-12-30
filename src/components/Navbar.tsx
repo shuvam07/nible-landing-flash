@@ -25,7 +25,7 @@ const Navbar = () => {
               />
               <span className="text-primary font-poppins font-semibold text-2xl tracking-tight">Nible</span>
             </a>
-            <span className="hidden md:inline text-foreground/70 text-base font-inter">Quick reads for busy minds.</span>
+            <span className="hidden md:inline text-foreground/70 text-base font-inter">Ad-free Dutch & Global news.</span>
           </div>
 
           {/* Desktop Navigation */}
