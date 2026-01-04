@@ -10,7 +10,9 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'src/**'
-      - '.github/workflows/deploy-landing.yml'
+      - 'public/**'
+      - 'index.html'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
