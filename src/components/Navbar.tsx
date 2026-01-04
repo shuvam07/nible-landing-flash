@@ -7,6 +7,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Features", href: "#features" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "mailto:hello@nible.news" }
   ];
 

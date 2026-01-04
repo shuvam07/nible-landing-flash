@@ -58,6 +58,7 @@ const Footer = () => {
               <li><a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a></li>
               <li><a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">How it Works</a></li>
               <li><a href="#install" className="text-muted-foreground hover:text-foreground transition-colors">Download</a></li>
+              <li><a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
               <li><a href="/why-ad-free-news" className="text-muted-foreground hover:text-foreground transition-colors">Why Ad-Free News</a></li>
             </ul>
           </div>

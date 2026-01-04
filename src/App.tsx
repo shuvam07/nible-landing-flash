@@ -7,6 +7,11 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import WhyAdFree from "./pages/WhyAdFree";
+import Blog from "./pages/Blog";
+import DutchNewsApp from "./pages/blog/DutchNewsApp";
+import AdFreeNews from "./pages/blog/AdFreeNews";
+import ShortNewsSummaries from "./pages/blog/ShortNewsSummaries";
+import NoLoginPrivacy from "./pages/blog/NoLoginPrivacy";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +25,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/why-ad-free-news" element={<WhyAdFree />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/dutch-news-app" element={<DutchNewsApp />} />
+          <Route path="/blog/ad-free-news" element={<AdFreeNews />} />
+          <Route path="/blog/short-news-summaries" element={<ShortNewsSummaries />} />
+          <Route path="/blog/no-login-privacy" element={<NoLoginPrivacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
