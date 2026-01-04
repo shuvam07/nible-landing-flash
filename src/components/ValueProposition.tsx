@@ -27,7 +27,7 @@ const ValueProposition = () => {
           <div className="text-center mb-16">
             <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-gradient-to-r from-primary to-accent" />
             <h2 className="text-3xl sm:text-4xl font-poppins font-bold tracking-tight text-foreground mb-4">
-              Why Choose Nible?
+              Dutch News vs Traditional News Apps
             </h2>
             <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
               Stop wasting time on news that doesn't matter. Get the facts fast, without the fluff.

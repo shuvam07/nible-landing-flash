@@ -121,16 +121,16 @@ const Hero = () => {
               </div> */}
               
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-foreground mb-6 leading-tight">
-                Dutch news.
-                <span className="text-primary block">Ad‑free & No login.</span>
+                Ad-Free Dutch & Global News
+                <span className="text-primary block">Short Summaries, No Login</span>
               </h1>
               
               <p className="text-xl sm:text-2xl text-foreground/80 font-inter mb-8 max-w-2xl mx-auto lg:mx-0">
-                Dutch local & global news in 60 words.
+                Short, factual news summaries — read headlines in seconds.
               </p>
 
               <p className="text-lg text-foreground/70 font-inter mb-12 max-w-xl mx-auto lg:mx-0">
-                Get the facts fast. No ads, no sign-ups, and no user data tracking. Ever.
+                Get Dutch local and global news in 60-word summaries. No ads, no sign-ups, and no user data tracking. Ever.
               </p>
 
               {/* CTA Buttons */}

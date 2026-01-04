@@ -52,7 +52,7 @@ const Features = () => {
         <div className="max-w-3xl mx-auto text-center mb-14">
           <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-gradient-to-r from-primary to-accent" />
           <h2 className="text-3xl sm:text-4xl font-poppins font-bold tracking-tight text-zinc-900">
-            Powerful, yet effortless
+            Ad-Free News Features for Dutch Readers
           </h2>
           <p className="mt-3 text-zinc-600 font-inter">
             Designed for speed, clarity, and staying on top of what matters.

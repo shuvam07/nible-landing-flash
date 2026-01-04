@@ -58,11 +58,31 @@ const Footer = () => {
               <li><a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a></li>
               <li><a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">How it Works</a></li>
               <li><a href="#install" className="text-muted-foreground hover:text-foreground transition-colors">Download</a></li>
+              <li><a href="/why-ad-free-news" className="text-muted-foreground hover:text-foreground transition-colors">Why Ad-Free News</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 text-center">
+        {/* About Nible Section for SEO */}
+        <div className="border-t border-border mt-12 pt-8">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-poppins font-semibold text-foreground mb-4 text-center">
+              About Nible
+            </h2>
+            <p className="text-foreground/80 font-inter text-center leading-relaxed mb-4">
+              Nible is an ad-free news app and website delivering local Dutch and global news summaries (60 words) with no login required. 
+              We provide fast, factual news coverage without advertisements, tracking, or data collection. Nible focuses on Dutch local news 
+              and major global stories, all condensed into clear, concise summaries that respect your time and privacy.
+            </p>
+            <p className="text-foreground/80 font-inter text-center leading-relaxed">
+              As a privacy-first news platform, Nible ensures your reading habits remain private. No user accounts, no tracking scripts, 
+              and no targeted advertising. Experience news the way it should be: fast, factual, and free from distractions. 
+              <a href="/why-ad-free-news" className="text-primary hover:text-primary-hover ml-1">Learn why ad-free news matters</a>.
+            </p>
+          </div>
+        </div>
+
+        <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground font-inter text-sm">
             © 2025 Nible. All rights reserved.
           </p>
