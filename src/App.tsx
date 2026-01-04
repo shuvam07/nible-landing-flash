@@ -12,6 +12,8 @@ import DutchNewsApp from "./pages/blog/DutchNewsApp";
 import AdFreeNews from "./pages/blog/AdFreeNews";
 import ShortNewsSummaries from "./pages/blog/ShortNewsSummaries";
 import NoLoginPrivacy from "./pages/blog/NoLoginPrivacy";
+import Unsubscribe from "./pages/Unsubscribe";
+import ApiUnsubscribe from "./pages/ApiUnsubscribe";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/blog/ad-free-news" element={<AdFreeNews />} />
           <Route path="/blog/short-news-summaries" element={<ShortNewsSummaries />} />
           <Route path="/blog/no-login-privacy" element={<NoLoginPrivacy />} />
+          <Route path="/unsubscribe" element={<Unsubscribe />} />
+          <Route path="/api/newsletter/unsubscribe" element={<ApiUnsubscribe />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
