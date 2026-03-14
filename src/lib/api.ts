@@ -77,6 +77,16 @@ export async function getArticlesByCategory(
   return data.articles;
 }
 
+export async function searchArticles(
+  query: string,
+  limit = 30
+): Promise<Article[]> {
+  const data = await fetchJSON<ArticlesResponse>(
+    `${API_BASE}/articles/search?q=${encodeURIComponent(query)}&limit=${limit}`
+  );
+  return data.articles;
+}
+
 export async function getArticleByCode(
   uniqueCode: string
 ): Promise<Article> {

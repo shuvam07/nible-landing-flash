@@ -9,9 +9,10 @@ import {
   getCategories,
   getTrendingArticles,
   getArticlesByCategory,
+  searchArticles,
 } from "@/lib/api";
 import type { Article } from "@/lib/api";
-import { RefreshCw, AlertCircle, Mail } from "lucide-react";
+import { RefreshCw, AlertCircle, Mail, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -26,6 +27,9 @@ const Index = () => {
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [subscribing, setSubscribing] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const { toast } = useToast();
 
   // Fetch categories on mount
@@ -93,6 +97,30 @@ const Index = () => {
     }
   };
 
+  const handleSearch = useCallback(async (query: string) => {
+    if (!query.trim()) return;
+    setIsSearching(true);
+    setSearchTerm(query.trim());
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await searchArticles(query.trim(), 30);
+      setArticles(data);
+    } catch {
+      setError("Search failed. Please try again.");
+      setArticles([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const clearSearch = useCallback(() => {
+    setIsSearching(false);
+    setSearchTerm("");
+    setSearchQuery("");
+    fetchArticles(activeTab);
+  }, [activeTab, fetchArticles]);
+
   const allTabs = [...SPECIAL_TABS, ...categories];
   const featuredArticles = articles.slice(0, 5);
   const remainingArticles = articles.slice(5);
@@ -118,16 +146,38 @@ const Index = () => {
         <Navbar />
       </div>
 
-      {/* Category Bar — full width, evenly spaced, underline style */}
+      {/* Category Bar + Search */}
       <div className="sticky top-24 z-40 bg-background border-b border-border">
-        <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex min-w-max">
+        <div className="flex items-center">
+          {/* Search Bar */}
+          <form
+            onSubmit={(e) => { e.preventDefault(); handleSearch(searchQuery); }}
+            className="flex items-center gap-2 px-4 py-2 border-r border-border"
+          >
+            <Search className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+            <input
+              type="text"
+              placeholder="Search news..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-transparent text-sm font-inter outline-none w-32 sm:w-48 placeholder:text-muted-foreground/60"
+            />
+            {isSearching && (
+              <button type="button" onClick={clearSearch} className="text-muted-foreground hover:text-foreground">
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </form>
+
+          {/* Category Tabs */}
+          <div className="flex-1 overflow-x-auto scrollbar-hide">
+            <div className="flex min-w-max">
             {allTabs.map((tab) => {
               const isActive = tab === activeTab;
               return (
                 <button
                   key={tab}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => { setActiveTab(tab); setIsSearching(false); setSearchTerm(""); setSearchQuery(""); }}
                   className={`
                     flex-1 min-w-[100px] px-4 py-3 text-sm font-inter font-medium whitespace-nowrap
                     transition-all duration-200 border-b-2 text-center
@@ -142,6 +192,7 @@ const Index = () => {
                 </button>
               );
             })}
+            </div>
           </div>
         </div>
       </div>
@@ -151,7 +202,11 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           {/* Section title */}
           <h2 className="text-lg font-poppins font-bold text-foreground mb-4">
-            {activeTab === "Trending" ? "Top News" : activeTab}
+            {isSearching
+              ? `Results for "${searchTerm}"`
+              : activeTab === "Trending"
+                ? "Top News"
+                : activeTab}
           </h2>
 
           {/* Error State */}
@@ -181,24 +236,34 @@ const Index = () => {
             </div>
           )}
 
-          {/* Articles — Featured + Grid */}
+          {/* Articles — Featured + Grid (or flat grid for search) */}
           {!loading && !error && articles.length > 0 && (
             <>
-              {/* Featured hero + sidebar layout */}
-              <FeaturedNews articles={featuredArticles} />
-
-              {/* More articles below in a grid */}
-              {remainingArticles.length > 0 && (
-                <div className="mt-8">
-                  <h3 className="text-base font-poppins font-semibold text-foreground mb-4">
-                    More Stories
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {remainingArticles.map((article) => (
-                      <NewsCard key={article.id} article={article} />
-                    ))}
-                  </div>
+              {isSearching ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {articles.map((article) => (
+                    <NewsCard key={article.id} article={article} />
+                  ))}
                 </div>
+              ) : (
+                <>
+                  {/* Featured hero + sidebar layout */}
+                  <FeaturedNews articles={featuredArticles} />
+
+                  {/* More articles below in a grid */}
+                  {remainingArticles.length > 0 && (
+                    <div className="mt-8">
+                      <h3 className="text-base font-poppins font-semibold text-foreground mb-4">
+                        More Stories
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {remainingArticles.map((article) => (
+                          <NewsCard key={article.id} article={article} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
             </>
           )}
