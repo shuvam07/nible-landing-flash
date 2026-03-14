@@ -101,10 +101,16 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* SEO Top Strip — above navbar */}
       <div className="fixed top-0 left-0 right-0 z-[60] bg-primary/10 border-b border-primary/20">
-        <div className="container mx-auto px-4 py-1.5 text-center">
+        <div className="container mx-auto px-4 py-1.5 flex items-center justify-center gap-3">
           <p className="text-xs sm:text-sm font-inter font-medium text-foreground/80 tracking-wide">
-            Ad-free short news from the Netherlands &amp; the world. No login. No tracking. Trusted.
+            Ad-free short news from the Netherlands &amp; the world. No login. No tracking.
           </p>
+          <a
+            href="#newsletter"
+            className="hidden sm:inline-flex items-center gap-1 text-xs font-inter font-semibold text-primary hover:text-primary/80 bg-white/80 border border-primary/30 rounded-full px-3 py-0.5 transition-colors"
+          >
+            <Mail className="w-3 h-3" /> Subscribe Free
+          </a>
         </div>
       </div>
 
@@ -213,7 +219,7 @@ const Index = () => {
       </main>
 
       {/* Newsletter Section */}
-      <section className="mt-12 bg-primary/5 border-y border-border">
+      <section id="newsletter" className="mt-12 bg-primary/5 border-y border-border scroll-mt-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
           <div className="max-w-xl mx-auto text-center">
             <Mail className="w-10 h-10 text-primary mx-auto mb-3" />
