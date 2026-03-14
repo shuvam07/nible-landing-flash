@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Nible — Product Hunt Thumbnail</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffffff 40%, #fff7ed 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 0 80px;
+    width: 100%;
+  }
+  .left {
+    flex: 1;
+  }
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .logo-row img {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+  .logo-row span {
+    font-size: 40px;
+    font-weight: 800;
+    color: #e8702a;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  h1 span {
+    color: #e8702a;
+  }
+  .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+  .badges {
+    display: flex;
+    gap: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+  }
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .badge .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8702a;
+  }
+  .right {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+  }
+  .phone {
+    width: 180px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    border: 2px solid #e5e5e5;
+  }
+  .phone:nth-child(2) {
+    transform: translateY(-20px);
+  }
+  /* Corner accent */
+  .accent {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(232, 112, 42, 0.08);
+  }
+  .accent2 {
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(232, 112, 42, 0.05);
+  }
+  .version {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: #e8702a;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="accent"></div>
+  <div class="accent2"></div>
+  <div class="version">2.0 — Now on Web</div>
+
+  <div class="container">
+    <div class="left">
+      <div class="logo-row">
+        <img src="/images/nible/briefly.png" alt="Nible" />
+        <span>Nible</span>
+      </div>
+      <h1>News Without <span>the Noise</span></h1>
+      <p class="subtitle">
+        Dutch &amp; global news in 60-word summaries.<br />
+        Ad-free. No login. No tracking.
+      </p>
+      <div class="badges">
+        <div class="badge"><div class="dot"></div>Ad-Free</div>
+        <div class="badge"><div class="dot"></div>60 Words</div>
+        <div class="badge"><div class="dot"></div>No Login</div>
+      </div>
+    </div>
+    <div class="right">
+      <img class="phone" src="/images/nible/5.png" alt="Screenshot" />
+      <img class="phone" src="/images/nible/1.png" alt="Screenshot" />
+    </div>
+  </div>
+</body>
+</html>
