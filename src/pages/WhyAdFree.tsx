@@ -140,7 +140,7 @@ const WhyAdFree = () => {
                 </p>
                 <div className="flex gap-4">
                   <a
-                    href="https://apps.apple.com/in/app/nible-news/id6748324981"
+                    href="https://apps.apple.com/in/app/nible-news/id6748324981?utm_source=nible_website&utm_medium=web&utm_campaign=website_cta"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-3 rounded-lg font-inter font-medium transition-colors"
@@ -148,7 +148,7 @@ const WhyAdFree = () => {
                     Download for iOS
                   </a>
                   <a
-                    href="https://play.google.com/store/apps/details?id=com.nible.news&pcampaignid=web_share"
+                    href="https://play.google.com/store/apps/details?id=com.nible.news&utm_source=nible_website&utm_medium=web&utm_campaign=website_cta"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-3 rounded-lg font-inter font-medium transition-colors"

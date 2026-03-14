@@ -26,7 +26,7 @@ const StickyAppBanner = () => {
       {/* Store badges */}
       <div className="flex items-center justify-center gap-3">
         <a
-          href="https://play.google.com/store/apps/details?id=com.nible.news&pcampaignid=web_share"
+          href="https://play.google.com/store/apps/details?id=com.nible.news&utm_source=nible_website&utm_medium=web&utm_campaign=website_cta"
           target="_blank"
           rel="noopener noreferrer"
           className="block rounded-lg border border-border hover:border-primary/40 transition-colors overflow-hidden"
@@ -34,7 +34,7 @@ const StickyAppBanner = () => {
           <img src={PlayStoreBadge} alt="Google Play" className="h-11" />
         </a>
         <a
-          href="https://apps.apple.com/in/app/nible-news/id6748324981"
+          href="https://apps.apple.com/in/app/nible-news/id6748324981?utm_source=nible_website&utm_medium=web&utm_campaign=website_cta"
           target="_blank"
           rel="noopener noreferrer"
           className="block rounded-lg border border-border hover:border-primary/40 transition-colors overflow-hidden"

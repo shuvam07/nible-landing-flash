@@ -136,7 +136,7 @@ const Hero = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <a
-                  href="https://apps.apple.com/in/app/nible-news/id6748324981"
+                  href="https://apps.apple.com/in/app/nible-news/id6748324981?utm_source=nible_website&utm_medium=web&utm_campaign=website_cta"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -147,7 +147,7 @@ const Hero = () => {
                   />
                 </a>
                 <a
-                  href="https://play.google.com/store/apps/details?id=com.nible.news&pcampaignid=web_share"
+                  href="https://play.google.com/store/apps/details?id=com.nible.news&utm_source=nible_website&utm_medium=web&utm_campaign=website_cta"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
