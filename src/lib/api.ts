@@ -77,14 +77,24 @@ export async function getArticlesByCategory(
   return data.articles;
 }
 
+interface SearchResponse {
+  status: string;
+  articles: Article[];
+  query: string;
+  count: number;
+  offset: number;
+  has_more: boolean;
+}
+
 export async function searchArticles(
   query: string,
-  limit = 30
-): Promise<Article[]> {
-  const data = await fetchJSON<ArticlesResponse>(
-    `${API_BASE}/articles/search?q=${encodeURIComponent(query)}&limit=${limit}`
+  limit = 30,
+  offset = 0
+): Promise<{ articles: Article[]; has_more: boolean }> {
+  const data = await fetchJSON<SearchResponse>(
+    `${API_BASE}/articles/search?q=${encodeURIComponent(query)}&limit=${limit}&offset=${offset}`
   );
-  return data.articles;
+  return { articles: data.articles, has_more: data.has_more };
 }
 
 export async function getArticleByCode(

@@ -1,14 +1,24 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("q") || "";
+  });
 
   const navItems = [
     { name: "Blog", href: "/blog" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "mailto:hello@nible.news" }
   ];
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    window.location.href = `/?q=${encodeURIComponent(searchQuery.trim())}`;
+  };
 
   return (
     <nav className="fixed top-8 w-full bg-white/95 backdrop-blur-md border-b border-border z-50 shadow-sm">
@@ -27,8 +37,18 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Desktop Navigation — centered */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-8">
+          {/* Desktop Navigation — centered (search + links) */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6">
+            <form onSubmit={handleSearch} className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1.5">
+              <Search className="w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search news..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-transparent text-sm font-inter outline-none w-36 placeholder:text-muted-foreground/60"
+              />
+            </form>
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -55,6 +75,16 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border">
+              <form onSubmit={handleSearch} className="flex items-center gap-2 px-3 py-2 mb-1">
+                <Search className="w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search news..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-muted/50 border border-border rounded-full text-sm font-inter outline-none w-full px-3 py-1.5 placeholder:text-muted-foreground/60"
+                />
+              </form>
               {navItems.map((item) => (
                 <a
                   key={item.name}

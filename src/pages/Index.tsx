@@ -12,7 +12,7 @@ import {
   searchArticles,
 } from "@/lib/api";
 import type { Article } from "@/lib/api";
-import { RefreshCw, AlertCircle, Mail, Search, X } from "lucide-react";
+import { RefreshCw, AlertCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -27,9 +27,11 @@ const Index = () => {
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [subscribing, setSubscribing] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchOffset, setSearchOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const { toast } = useToast();
 
   // Fetch categories on mount
@@ -48,6 +50,16 @@ const Index = () => {
           "General",
         ])
       );
+  }, []);
+
+  // Read ?q= from URL for search
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    if (q) {
+      handleSearch(q);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Fetch articles when tab changes
@@ -101,23 +113,45 @@ const Index = () => {
     if (!query.trim()) return;
     setIsSearching(true);
     setSearchTerm(query.trim());
+    setSearchOffset(0);
     setLoading(true);
     setError(null);
     try {
-      const data = await searchArticles(query.trim(), 30);
-      setArticles(data);
+      const { articles: results, has_more } = await searchArticles(query.trim(), 30, 0);
+      setArticles(results);
+      setHasMore(has_more);
+      setSearchOffset(results.length);
     } catch {
       setError("Search failed. Please try again.");
       setArticles([]);
+      setHasMore(false);
     } finally {
       setLoading(false);
     }
   }, []);
 
+  const loadMoreResults = useCallback(async () => {
+    if (!searchTerm || loadingMore) return;
+    setLoadingMore(true);
+    try {
+      const { articles: results, has_more } = await searchArticles(searchTerm, 30, searchOffset);
+      setArticles((prev) => [...prev, ...results]);
+      setHasMore(has_more);
+      setSearchOffset((prev) => prev + results.length);
+    } catch {
+      // silently fail
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [searchTerm, searchOffset, loadingMore]);
+
   const clearSearch = useCallback(() => {
     setIsSearching(false);
     setSearchTerm("");
-    setSearchQuery("");
+    setSearchOffset(0);
+    setHasMore(false);
+    // Clear ?q= from URL
+    window.history.replaceState({}, "", "/");
     fetchArticles(activeTab);
   }, [activeTab, fetchArticles]);
 
@@ -146,38 +180,16 @@ const Index = () => {
         <Navbar />
       </div>
 
-      {/* Category Bar + Search */}
+      {/* Category Bar */}
       <div className="sticky top-24 z-40 bg-background border-b border-border">
-        <div className="flex items-center">
-          {/* Search Bar */}
-          <form
-            onSubmit={(e) => { e.preventDefault(); handleSearch(searchQuery); }}
-            className="flex items-center gap-2 px-4 py-2 border-r border-border"
-          >
-            <Search className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-            <input
-              type="text"
-              placeholder="Search news..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent text-sm font-inter outline-none w-32 sm:w-48 placeholder:text-muted-foreground/60"
-            />
-            {isSearching && (
-              <button type="button" onClick={clearSearch} className="text-muted-foreground hover:text-foreground">
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </form>
-
-          {/* Category Tabs */}
-          <div className="flex-1 overflow-x-auto scrollbar-hide">
-            <div className="flex min-w-max">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex min-w-max">
             {allTabs.map((tab) => {
-              const isActive = tab === activeTab;
+              const isActive = !isSearching && tab === activeTab;
               return (
                 <button
                   key={tab}
-                  onClick={() => { setActiveTab(tab); setIsSearching(false); setSearchTerm(""); setSearchQuery(""); }}
+                  onClick={() => { setActiveTab(tab); if (isSearching) clearSearch(); }}
                   className={`
                     flex-1 min-w-[100px] px-4 py-3 text-sm font-inter font-medium whitespace-nowrap
                     transition-all duration-200 border-b-2 text-center
@@ -192,7 +204,6 @@ const Index = () => {
                 </button>
               );
             })}
-            </div>
           </div>
         </div>
       </div>
@@ -240,10 +251,63 @@ const Index = () => {
           {!loading && !error && articles.length > 0 && (
             <>
               {isSearching ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {articles.map((article) => (
-                    <NewsCard key={article.id} article={article} />
-                  ))}
+                <div className="space-y-4">
+                  {articles.map((article) => {
+                    const date = article.published_at
+                      ? new Date(article.published_at).toLocaleDateString("en-GB", {
+                          day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+                        })
+                      : "";
+                    return (
+                      <a
+                        key={article.id}
+                        href={article.source_url || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex gap-4 p-4 bg-white rounded-lg border border-border hover:border-primary/30 hover:shadow-sm transition-all group"
+                      >
+                        {article.image_url && (
+                          <img
+                            src={article.image_url}
+                            alt=""
+                            className="w-24 h-24 sm:w-32 sm:h-24 rounded-md object-cover flex-shrink-0"
+                            loading="lazy"
+                          />
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-inter font-medium text-primary bg-primary/10 rounded px-2 py-0.5">
+                              {article.category}
+                            </span>
+                            <span className="text-xs text-muted-foreground font-inter">{date}</span>
+                          </div>
+                          <h3 className="text-sm sm:text-base font-poppins font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                            {article.headline}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-muted-foreground font-inter mt-1 line-clamp-2">
+                            {article.summary}
+                          </p>
+                          {article.source && (
+                            <span className="text-xs text-muted-foreground/70 font-inter mt-1 inline-block">
+                              {article.source}
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    );
+                  })}
+                  {hasMore && (
+                    <div className="text-center mt-6">
+                      <Button
+                        onClick={loadMoreResults}
+                        disabled={loadingMore}
+                        variant="outline"
+                        className="font-inter px-8"
+                      >
+                        {loadingMore ? "Loading..." : "Load More"}
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <>
