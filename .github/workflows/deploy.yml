@@ -38,6 +38,7 @@ jobs:
             TARGET_DIR="/var/www/nible"
 
             cd "${REPO_DIR}"
+            git stash --include-untracked || true
             git pull --ff-only origin main
             npm install
             npm run build
