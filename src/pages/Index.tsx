@@ -168,14 +168,14 @@ const Index = () => {
         if (parsed.d === today) count = parsed.c || 0;
       } catch { /* ignore */ }
     }
-    if (count >= 10) return false;
+    if (count >= 5) return false;
     localStorage.setItem("nible_tl", JSON.stringify({ d: today, c: count + 1 }));
     return true;
   }, []);
 
   const fetchTimeline = useCallback(async (query: string) => {
     if (!checkTimelineLimit()) {
-      toast({ title: "Daily limit reached", description: "You can view up to 10 timelines per day. Try again tomorrow!", variant: "destructive" });
+      toast({ title: "Daily limit reached", description: "You can view up to 5 timelines per day. Try again tomorrow!", variant: "destructive" });
       setViewMode("list");
       return;
     }
@@ -188,7 +188,7 @@ const Index = () => {
       setTimelineData([]);
       setTimelineSummary("");
       if (err?.message?.includes("429")) {
-        toast({ title: "Daily limit reached", description: "You can view up to 10 timelines per day.", variant: "destructive" });
+        toast({ title: "Daily limit reached", description: "You can view up to 5 timelines per day.", variant: "destructive" });
         setViewMode("list");
         return;
       }
