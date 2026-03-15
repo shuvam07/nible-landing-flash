@@ -41,8 +41,6 @@ const NewsCard = ({ article }: NewsCardProps) => {
   return (
     <a
       href={articleUrl}
-      target="_blank"
-      rel="noopener noreferrer"
       className="group block bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-300"
     >
       {/* Image */}

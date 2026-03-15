@@ -84,17 +84,44 @@ interface SearchResponse {
   count: number;
   offset: number;
   has_more: boolean;
+  timeline_eligible: boolean;
 }
 
 export async function searchArticles(
   query: string,
   limit = 30,
   offset = 0
-): Promise<{ articles: Article[]; has_more: boolean }> {
+): Promise<{ articles: Article[]; has_more: boolean; timeline_eligible: boolean }> {
   const data = await fetchJSON<SearchResponse>(
     `${API_BASE}/articles/search?q=${encodeURIComponent(query)}&limit=${limit}&offset=${offset}`
   );
-  return { articles: data.articles, has_more: data.has_more };
+  return { articles: data.articles, has_more: data.has_more, timeline_eligible: data.timeline_eligible };
+}
+
+export interface TimelineEvent {
+  headline: string;
+}
+
+export interface TimelineGroup {
+  date: string;
+  articles: TimelineEvent[];
+}
+
+export interface TimelineResponse {
+  status: string;
+  summary: string;
+  timeline: TimelineGroup[];
+  query: string;
+  total: number;
+}
+
+export async function getTimeline(
+  query: string,
+  limit = 50
+): Promise<TimelineResponse> {
+  return fetchJSON<TimelineResponse>(
+    `${API_BASE}/timeline?q=${encodeURIComponent(query)}&limit=${limit}`
+  );
 }
 
 export async function getArticleByCode(

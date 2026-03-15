@@ -33,8 +33,6 @@ const FeaturedNews = ({ articles }: FeaturedNewsProps) => {
       {/* Hero Article — left, large */}
       <a
         href={heroUrl}
-        target="_blank"
-        rel="noopener noreferrer"
         className="lg:col-span-3 group block"
       >
         <div className="relative rounded-xl overflow-hidden bg-muted aspect-[16/10]">
@@ -83,8 +81,6 @@ const FeaturedNews = ({ articles }: FeaturedNewsProps) => {
             <a
               key={article.id}
               href={url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group flex gap-3 py-3 first:pt-0 last:pb-0"
             >
               {/* Thumbnail */}

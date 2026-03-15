@@ -10,9 +10,10 @@ import {
   getTrendingArticles,
   getArticlesByCategory,
   searchArticles,
+  getTimeline,
 } from "@/lib/api";
-import type { Article } from "@/lib/api";
-import { RefreshCw, AlertCircle, Mail } from "lucide-react";
+import type { Article, TimelineGroup } from "@/lib/api";
+import { RefreshCw, AlertCircle, Mail, Clock, List } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -32,6 +33,11 @@ const Index = () => {
   const [searchOffset, setSearchOffset] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [viewMode, setViewMode] = useState<"list" | "timeline">("list");
+  const [timelineData, setTimelineData] = useState<TimelineGroup[]>([]);
+  const [timelineSummary, setTimelineSummary] = useState("");
+  const [timelineLoading, setTimelineLoading] = useState(false);
+  const [timelineEligible, setTimelineEligible] = useState(false);
   const { toast } = useToast();
 
   // Fetch categories on mount
@@ -83,6 +89,9 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
+    // Don't fetch tab articles if we're loading search results from URL
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("q")) return;
     fetchArticles(activeTab);
   }, [activeTab, fetchArticles]);
 
@@ -114,13 +123,17 @@ const Index = () => {
     setIsSearching(true);
     setSearchTerm(query.trim());
     setSearchOffset(0);
+    setViewMode("list");
+    setTimelineData([]);
+    setTimelineSummary("");
     setLoading(true);
     setError(null);
     try {
-      const { articles: results, has_more } = await searchArticles(query.trim(), 30, 0);
+      const { articles: results, has_more, timeline_eligible } = await searchArticles(query.trim(), 10, 0);
       setArticles(results);
       setHasMore(has_more);
       setSearchOffset(results.length);
+      setTimelineEligible(timeline_eligible);
     } catch {
       setError("Search failed. Please try again.");
       setArticles([]);
@@ -134,7 +147,7 @@ const Index = () => {
     if (!searchTerm || loadingMore) return;
     setLoadingMore(true);
     try {
-      const { articles: results, has_more } = await searchArticles(searchTerm, 30, searchOffset);
+      const { articles: results, has_more } = await searchArticles(searchTerm, 10, searchOffset);
       setArticles((prev) => [...prev, ...results]);
       setHasMore(has_more);
       setSearchOffset((prev) => prev + results.length);
@@ -145,13 +158,64 @@ const Index = () => {
     }
   }, [searchTerm, searchOffset, loadingMore]);
 
+  const checkTimelineLimit = useCallback((): boolean => {
+    const today = new Date().toISOString().slice(0, 10);
+    const stored = localStorage.getItem("nible_tl");
+    let count = 0;
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (parsed.d === today) count = parsed.c || 0;
+      } catch { /* ignore */ }
+    }
+    if (count >= 10) return false;
+    localStorage.setItem("nible_tl", JSON.stringify({ d: today, c: count + 1 }));
+    return true;
+  }, []);
+
+  const fetchTimeline = useCallback(async (query: string) => {
+    if (!checkTimelineLimit()) {
+      toast({ title: "Daily limit reached", description: "You can view up to 10 timelines per day. Try again tomorrow!", variant: "destructive" });
+      setViewMode("list");
+      return;
+    }
+    setTimelineLoading(true);
+    try {
+      const data = await getTimeline(query, 50);
+      setTimelineData(data.timeline);
+      setTimelineSummary(data.summary);
+    } catch (err: any) {
+      setTimelineData([]);
+      setTimelineSummary("");
+      if (err?.message?.includes("429")) {
+        toast({ title: "Daily limit reached", description: "You can view up to 10 timelines per day.", variant: "destructive" });
+        setViewMode("list");
+        return;
+      }
+    } finally {
+      setTimelineLoading(false);
+    }
+  }, [toast, checkTimelineLimit]);
+
+  const switchToTimeline = useCallback(() => {
+    setViewMode("timeline");
+    if (searchTerm && timelineData.length === 0) {
+      fetchTimeline(searchTerm);
+    }
+  }, [searchTerm, timelineData.length, fetchTimeline]);
+
   const clearSearch = useCallback(() => {
     setIsSearching(false);
     setSearchTerm("");
     setSearchOffset(0);
     setHasMore(false);
-    // Clear ?q= from URL
+    setViewMode("list");
+    setTimelineData([]);
+    setTimelineSummary("");
+    setTimelineEligible(false);
+    // Clear ?q= from URL and tell Navbar to clear search input
     window.history.replaceState({}, "", "/");
+    window.dispatchEvent(new Event("nible:clearSearch"));
     fetchArticles(activeTab);
   }, [activeTab, fetchArticles]);
 
@@ -162,7 +226,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* SEO Top Strip — above navbar */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-primary/10 border-b border-primary/20">
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-[#f0f4ff] border-b border-primary/20">
         <div className="container mx-auto px-4 py-1.5 flex items-center justify-center gap-3">
           <p className="text-xs sm:text-sm font-inter font-medium text-foreground/80 tracking-wide">
             Ad-free short news from the Netherlands &amp; the world. No login. No tracking.
@@ -220,6 +284,36 @@ const Index = () => {
                 : activeTab}
           </h2>
 
+          {/* Timeline suggestion banner — only when eligible and in list mode */}
+          {isSearching && timelineEligible && viewMode === "list" && !loading && (
+            <div className="max-w-3xl mx-auto mb-5 bg-primary/5 border border-primary/20 rounded-lg p-4 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                <p className="text-sm font-inter text-foreground/80">
+                  There's more to this story — trace the key moments
+                </p>
+              </div>
+              <button
+                onClick={switchToTimeline}
+                className="flex-shrink-0 bg-primary text-white text-xs font-inter font-semibold px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                View Timeline
+              </button>
+            </div>
+          )}
+
+          {/* Back to list link when viewing timeline */}
+          {isSearching && viewMode === "timeline" && (
+            <div className="max-w-3xl mx-auto mb-4">
+              <button
+                onClick={() => setViewMode("list")}
+                className="flex items-center gap-1.5 text-sm font-inter text-primary hover:underline"
+              >
+                <List className="w-4 h-4" /> Back to list
+              </button>
+            </div>
+          )}
+
           {/* Error State */}
           {error && (
             <div className="text-center py-16">
@@ -250,8 +344,58 @@ const Index = () => {
           {/* Articles — Featured + Grid (or flat grid for search) */}
           {!loading && !error && articles.length > 0 && (
             <>
-              {isSearching ? (
-                <div className="space-y-4">
+              {isSearching && viewMode === "timeline" ? (
+                <div className="max-w-3xl mx-auto">
+                  {timelineLoading ? (
+                    <div className="text-center py-12">
+                      <RefreshCw className="w-8 h-8 text-primary mx-auto mb-3 animate-spin" />
+                      <p className="text-sm text-muted-foreground font-inter">Building timeline...</p>
+                    </div>
+                  ) : (
+                    <>
+                      {timelineSummary && (
+                        <p className="text-sm text-foreground/80 font-inter leading-relaxed mb-6 border-l-2 border-primary pl-4">
+                          {timelineSummary}
+                        </p>
+                      )}
+
+                      {timelineData.length === 0 && !timelineLoading && (
+                        <p className="text-center text-muted-foreground font-inter py-8">No timeline data found.</p>
+                      )}
+
+                      <div className="relative">
+                        {/* Vertical line */}
+                        <div className="absolute left-[7px] top-0 bottom-0 w-0.5 bg-border" />
+
+                        {timelineData.map((group) => {
+                          const dateLabel = new Date(group.date + "T00:00:00").toLocaleDateString("en-GB", {
+                            day: "numeric", month: "short", year: "numeric"
+                          });
+                          return (
+                            <div key={group.date} className="relative pl-8 pb-5">
+                              {/* Date dot */}
+                              <div className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full bg-primary border-2 border-white shadow-sm" />
+                              {/* Date label */}
+                              <div className="text-xs font-inter font-bold text-primary mb-1.5">{dateLabel}</div>
+                              {/* Event titles for this date */}
+                              <div className="space-y-1">
+                                {group.articles.map((evt, idx) => (
+                                  <div key={idx} className="py-0.5">
+                                    <p className="text-sm font-inter text-foreground/90 line-clamp-2">
+                                      {evt.headline}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
+                </div>
+              ) : isSearching ? (
+                <div className="space-y-3 max-w-3xl mx-auto">
                   {articles.map((article) => {
                     const date = article.published_at
                       ? new Date(article.published_at).toLocaleDateString("en-GB", {
@@ -262,8 +406,6 @@ const Index = () => {
                       <a
                         key={article.id}
                         href={article.source_url || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="flex gap-4 p-4 bg-white rounded-lg border border-border hover:border-primary/30 hover:shadow-sm transition-all group"
                       >
                         {article.image_url && (

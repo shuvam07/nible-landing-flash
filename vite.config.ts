@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
       '/api': {
         target: 'https://api.nible.news',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       },
     },
   },

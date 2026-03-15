@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
 
 const Navbar = () => {
@@ -7,6 +7,13 @@ const Navbar = () => {
     const params = new URLSearchParams(window.location.search);
     return params.get("q") || "";
   });
+
+  // Clear search input when Index.tsx clears the search
+  useEffect(() => {
+    const handler = () => setSearchQuery("");
+    window.addEventListener("nible:clearSearch", handler);
+    return () => window.removeEventListener("nible:clearSearch", handler);
+  }, []);
 
   const navItems = [
     { name: "Blog", href: "/blog" },
@@ -21,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-8 w-full bg-white/95 backdrop-blur-md border-b border-border z-50 shadow-sm">
+    <nav className="fixed top-8 w-full bg-white border-b border-border z-50 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           {/* Brand */}
@@ -39,16 +46,22 @@ const Navbar = () => {
 
           {/* Desktop Navigation — centered (search + links) */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6">
-            <form onSubmit={handleSearch} className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1.5">
-              <Search className="w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search news..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent text-sm font-inter outline-none w-36 placeholder:text-muted-foreground/60"
-              />
-            </form>
+            <div className="relative group">
+              <form onSubmit={handleSearch} className="flex items-center gap-1.5 bg-muted/50 border border-border rounded-full px-3 py-1.5">
+                <Search className="w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="e.g. Iran US war"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-transparent text-sm font-inter outline-none w-36 placeholder:text-muted-foreground/60"
+                />
+              </form>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-foreground text-white text-xs font-inter rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-lg">
+                Search any topic to find news & explore its timeline
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
+              </div>
+            </div>
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -79,7 +92,7 @@ const Navbar = () => {
                 <Search className="w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search news..."
+                  placeholder="e.g. Iran US war"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="bg-muted/50 border border-border rounded-full text-sm font-inter outline-none w-full px-3 py-1.5 placeholder:text-muted-foreground/60"
