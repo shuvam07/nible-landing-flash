@@ -15,6 +15,7 @@ import NoLoginPrivacy from "./pages/blog/NoLoginPrivacy";
 import News from "./pages/News";
 import About from "./pages/About";
 import Launch from "./pages/Launch";
+import ArticlePage from "./pages/ArticlePage";
 import Unsubscribe from "./pages/Unsubscribe";
 import ApiUnsubscribe from "./pages/ApiUnsubscribe";
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/launch" element={<Launch />} />
           <Route path="/api/newsletter/unsubscribe" element={<ApiUnsubscribe />} />
+          <Route path="/articles/:uniqueCode" element={<ArticlePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

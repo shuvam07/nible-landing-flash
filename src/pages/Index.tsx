@@ -5,6 +5,7 @@ import FeaturedNews from "@/components/FeaturedNews";
 import NewsCard from "@/components/NewsCard";
 import NewsCardSkeleton from "@/components/NewsCardSkeleton";
 import StickyAppBanner from "@/components/StickyAppBanner";
+import ShareButtons from "@/components/ShareButtons";
 import {
   getCategories,
   getTrendingArticles,
@@ -134,6 +135,13 @@ const Index = () => {
       setHasMore(has_more);
       setSearchOffset(results.length);
       setTimelineEligible(timeline_eligible);
+      // Show newsletter nudge on first search only
+      if (!localStorage.getItem("nible_nl_seen")) {
+        localStorage.setItem("nible_nl_seen", "1");
+        setTimeout(() => {
+          toast({ title: "Stay in the loop", description: "Subscribe to our newsletter for weekly top stories — scroll down to sign up!" });
+        }, 3000);
+      }
     } catch {
       setError("Search failed. Please try again.");
       setArticles([]);
@@ -141,7 +149,7 @@ const Index = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   const loadMoreResults = useCallback(async () => {
     if (!searchTerm || loadingMore) return;
@@ -354,10 +362,20 @@ const Index = () => {
                   ) : (
                     <>
                       {timelineSummary && (
-                        <p className="text-sm text-foreground/80 font-inter leading-relaxed mb-6 border-l-2 border-primary pl-4">
+                        <p className="text-sm text-foreground/80 font-inter leading-relaxed mb-4 border-l-2 border-primary pl-4">
                           {timelineSummary}
                         </p>
                       )}
+
+                      {/* Share timeline */}
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="text-xs text-muted-foreground font-inter">Share this timeline</span>
+                        <ShareButtons
+                          url={`https://nible.news/?q=${encodeURIComponent(searchTerm)}`}
+                          title={`Timeline: ${searchTerm} — Nible News`}
+                          variant="bar"
+                        />
+                      </div>
 
                       {timelineData.length === 0 && !timelineLoading && (
                         <p className="text-center text-muted-foreground font-inter py-8">No timeline data found.</p>
@@ -405,7 +423,7 @@ const Index = () => {
                     return (
                       <a
                         key={article.id}
-                        href={article.source_url || "#"}
+                        href={article.source_url || `/articles/${article.unique_code}`}
                         className="flex gap-4 p-4 bg-white rounded-lg border border-border hover:border-primary/30 hover:shadow-sm transition-all group"
                       >
                         {article.image_url && (
@@ -429,11 +447,12 @@ const Index = () => {
                           <p className="text-xs sm:text-sm text-muted-foreground font-inter mt-1 line-clamp-2">
                             {article.summary}
                           </p>
-                          {article.source && (
-                            <span className="text-xs text-muted-foreground/70 font-inter mt-1 inline-block">
-                              {article.source}
+                          <div className="flex items-center justify-between mt-1">
+                            <span className="text-[10px] text-muted-foreground/40 font-inter">
+                              {article.source || ""}
                             </span>
-                          )}
+                            <ShareButtons url={`https://www.nible.news/articles/${article.unique_code}`} title={article.headline} />
+                          </div>
                         </div>
                       </a>
                     );

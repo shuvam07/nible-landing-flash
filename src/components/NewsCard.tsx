@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Clock, Eye, Heart, TrendingUp, ExternalLink } from "lucide-react";
 import type { Article } from "@/lib/api";
+import ShareButtons from "@/components/ShareButtons";
 
 function timeAgo(dateStr: string): string {
   const now = new Date();
@@ -36,16 +37,16 @@ const NewsCard = ({ article }: NewsCardProps) => {
     CATEGORY_COLORS[article.category] ||
     "bg-gray-100 text-gray-700 border-gray-200";
 
-  const articleUrl = article.source_url || `https://nible.news/articles/${article.unique_code}`;
+  const articleUrl = article.source_url || `/articles/${article.unique_code}`;
 
   return (
     <a
       href={articleUrl}
-      className="group block bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+      className="group block bg-card rounded-xl border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300"
     >
       {/* Image */}
       {article.image_url && (
-        <div className="relative aspect-[16/9] overflow-hidden bg-muted">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-t-xl bg-muted">
           <img
             src={article.image_url}
             alt=""
@@ -92,13 +93,8 @@ const NewsCard = ({ article }: NewsCardProps) => {
 
         {/* Footer: source + stats */}
         <div className="flex items-center justify-between pt-2 border-t border-border/50">
-          <span className="text-xs text-muted-foreground font-inter flex items-center gap-1">
-            {article.source && (
-              <>
-                <ExternalLink className="w-3 h-3" />
-                {article.source}
-              </>
-            )}
+          <span className="text-[10px] text-muted-foreground/40 font-inter">
+            {article.source || ""}
           </span>
           <div className="flex items-center gap-3 text-xs text-muted-foreground font-inter">
             {article.views > 0 && (
@@ -113,6 +109,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
                 {article.likes}
               </span>
             )}
+            <ShareButtons url={`https://www.nible.news/articles/${article.unique_code}`} title={article.headline} />
           </div>
         </div>
       </div>

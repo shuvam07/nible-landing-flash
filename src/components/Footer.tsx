@@ -15,7 +15,13 @@ const Footer = () => {
               Ad-free Dutch & Global news summaries. 60 words, no login, no tracking.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://x.com/niblenews" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                title="Follow us on X"
+              >
                 <Twitter className="w-5 h-5" />
               </a>
               <a 
@@ -86,7 +92,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground font-inter text-sm">
-            © 2025 Nible. All rights reserved.
+            © 2026 Nible. All rights reserved.
           </p>
         </div>
       </div>
