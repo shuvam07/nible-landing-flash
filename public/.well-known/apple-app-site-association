@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["5BZT3F29QH.com.briefly.app"],
+        "components": [
+          {
+            "/": "/articles/*",
+            "comment": "Open shared article links directly in the Nible app"
+          }
+        ]
+      }
+    ]
+  }
+}
