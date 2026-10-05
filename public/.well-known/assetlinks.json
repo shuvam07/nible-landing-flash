@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.nible.news",
       "sha256_cert_fingerprints": [
-        "31:23:BB:7C:BD:D2:06:0B:0D:DF:E7:87:6E:E4:83:5F:2A:51:0F:F4:26:59:15:41:D3:7F:73:11:FC:9D:B3:8B"
+        "31:23:BB:7C:BD:D2:06:0B:0D:DF:E7:87:6E:E4:83:5F:2A:51:0F:F4:26:59:15:41:D3:7F:73:11:FC:9D:B3:8B",
+        "2B:8D:FC:D1:13:E6:A9:AF:FA:BB:E0:8F:86:48:6A:55:90:5D:A3:F0:6F:15:DD:0C:05:AE:04:9A:D8:7C:F2:83"
       ]
     }
   }
